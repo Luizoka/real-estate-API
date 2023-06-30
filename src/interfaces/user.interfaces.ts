@@ -18,3 +18,5 @@ type UserReturn = z.infer<typeof userReturnSchema>;
 type UserUpdate = DeepPartial<User>;
 
 type UserRepo = Repository<User>;
+
+export { UserCreate, UserRead, UserReturn, UserUpdate, UserRepo };

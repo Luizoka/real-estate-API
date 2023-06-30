@@ -1,6 +1,6 @@
-import 'reflect-metadata';
 import 'express-async-errors';
 import express, { Application } from 'express';
+import middlewares from './middlewares';
 import {
   categorieRouter,
   realEstateRouter,
@@ -22,5 +22,7 @@ app.use('/categories', categorieRouter);
 app.use('/realEstate', realEstateRouter);
 
 app.use('/schedules', scheduleRouter);
+
+app.use(middlewares.handleError);
 
 export default app;

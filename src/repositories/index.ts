@@ -1,7 +1,6 @@
-import userRouter from './user.repository';
-import sessionRouter from './session.repository';
-import categorieRouter from './category.repository';
-import scheduleRouter from './schedule.repository';
-import realEstateRouter from './realEstate.repository';
+import userRepository from './user.repository';
+import categorieRepository from './category.repository';
+import scheduleRepository from './schedule.repository';
+import realEstateRepository from './realEstate.repository';
 
-export { userRouter, sessionRouter, categorieRouter, scheduleRouter, realEstateRouter };
+export { userRepository, categorieRepository, scheduleRepository, realEstateRepository };

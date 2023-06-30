@@ -1,10 +1,18 @@
 import { Router } from 'express';
+import { userControllers } from '../controllers';
+import middlewares from '../middlewares';
+import { userCreateSchema } from '../schemas';
 
 const userRouter: Router = Router();
 
-userRouter.post('');
+userRouter.post(
+  '',
+  middlewares.validateBody(userCreateSchema),
+  middlewares.confirmUniqueEmail,
+  userControllers.createUser
+);
 
-userRouter.get('');
+userRouter.get('', middlewares.verifyAdm, userControllers.getAllUsers);
 
 userRouter.patch('/:id');
 

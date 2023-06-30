@@ -1,7 +1,3 @@
-import userRouter from './user.repository';
-import sessionRouter from './session.repository';
-import categorieRouter from './category.repository';
-import scheduleRouter from './schedule.repository';
-import realEstateRouter from './realEstate.repository';
+import userControllers from './user.controllers';
 
-export { userRouter, sessionRouter, categorieRouter, scheduleRouter, realEstateRouter };
+export { userControllers };
