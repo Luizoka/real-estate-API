@@ -7,7 +7,8 @@ const realEstateSchema = z.object({
   value: z
     .number()
     .multipleOf(0.01)
-    .default(() => 0),
+    .default(0)
+    .or(z.string().regex(/^\d+(\.\d{2})?$/)),
 
   size: z.number().int(),
 

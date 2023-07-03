@@ -1,5 +1,5 @@
 import 'express-async-errors';
-import express, { Application } from 'express';
+import express, { Application, json } from 'express';
 import middlewares from './middlewares';
 import {
   categorieRouter,
@@ -10,8 +10,7 @@ import {
 } from './routers';
 
 const app: Application = express();
-
-app.use(express.json());
+app.use(json());
 
 app.use('/users', userRouter);
 

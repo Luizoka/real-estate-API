@@ -10,8 +10,7 @@ const categoryRealStation = async (): Promise<any> => {
   const categoryRepo: iCategoryRepo = AppDataSource.getRepository(Category);
   const category = await categoryRepo.save({ name: 'Studio' });
 
-  const realEstateRepo: iRealEstateRepo =
-    AppDataSource.getRepository(RealEstate);
+  const realEstateRepo: iRealEstateRepo = AppDataSource.getRepository(RealEstate);
   const addressRepo: iAddressRepo = AppDataSource.getRepository(Address);
 
   const realEstateTotal: number = 5;
@@ -39,11 +38,7 @@ const categoryRealStation = async (): Promise<any> => {
     });
   }
 
-  await realEstateRepo
-    .createQueryBuilder('rs')
-    .insert()
-    .values(manyRealEstate)
-    .execute();
+  await realEstateRepo.createQueryBuilder('rs').insert().values(manyRealEstate).execute();
 
   return {
     ...category,

@@ -3,7 +3,7 @@ import { AppError } from '../errors';
 
 const verifyAdm = (req: Request, res: Response, next: NextFunction): void => {
   const adm: boolean = res.locals.decoded.admin;
-  if (!adm) throw new AppError('Insufficient permissions', 403);
+  if (!adm) throw new AppError('Insufficient permission', 403);
 
   return next();
 };

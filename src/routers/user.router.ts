@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { userControllers } from '../controllers';
 import middlewares from '../middlewares';
-import { userCreateSchema } from '../schemas';
+import { userCreateSchema, userUpdateSchema } from '../schemas';
 
 const userRouter: Router = Router();
 
@@ -12,10 +12,17 @@ userRouter.post(
   userControllers.createUser
 );
 
-userRouter.get('', middlewares.verifyAdm, userControllers.getAllUsers);
+userRouter.get(
+  '',
+  middlewares.verifyToken,
+  middlewares.verifyAdm,
+  userControllers.getAllUsers
+);
 
-userRouter.patch('/:id');
-
-userRouter.delete('/:id');
+userRouter.patch('/:id', userControllers.updateUser);
+middlewares.validateBody(userUpdateSchema),
+  middlewares.verifyToken,
+  middlewares.verifyAdm,
+  userRouter.delete('/:id');
 
 export default userRouter;

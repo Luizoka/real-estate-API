@@ -8,6 +8,9 @@ import {
   userReadSchema,
   userUpdateSchema,
 } from '../schemas';
+import { AppDataSource } from '../data-source';
+import { hash } from 'bcryptjs';
+import { AppError } from '../errors';
 
 const createUser = async (payload: UserCreate): Promise<UserReturn> => {
   const user: User = userRepository.create(payload);
@@ -23,7 +26,28 @@ const getAllUsers = async (admin: boolean): Promise<UserRead> => {
   return userReadSchema.parse(await userRepository.find());
 };
 
-const updateUser = async () => {};
+const updateUser = async (
+  userId: string,
+  user: User,
+  payload: UserUpdate
+): Promise<UserReturn> => {
+  console.log('AquiID', userId);
+  console.log('Aquipayload', payload);
+
+  if (payload.password) {
+    payload.password = await hash(payload.password, 10);
+  }
+  const foundUser = await userRepository.findOneBy({ id: Number(userId) });
+
+  if (!foundUser) throw new AppError('User not found', 404);
+
+  const userUpdated: User = await userRepository.create({ ...foundUser, ...payload });
+
+  await userRepository.save(userUpdated);
+  console.log('Aqui', userUpdated);
+  console.log('Aquifound', foundUser);
+  return userReturnSchema.parse(userUpdated);
+};
 
 const deleteUser = async () => {};
 
