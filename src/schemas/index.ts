@@ -1,14 +1,21 @@
-import { addressSchema, addressCreateSchema } from './address.schema';
+import {
+  addressSchema,
+  addressCreateSchema,
+  addressReturnSchema,
+  addressReturnIdSchema,
+} from './address.schema';
 import {
   categorySchema,
   categoryCreateSchema,
   categoryReadSchema,
+  categoryReturnSchema,
+  categoryReturnIdSchema,
   realEstateByCategorySchema,
 } from './category.schemas';
 import {
   realEstateSchema,
   realEstateCreateSchema,
-  realEstateAdressSchema,
+  realEstateReturnSchema,
   realEstateReadSchema,
 } from './realEstate.schemas';
 import {
@@ -28,13 +35,16 @@ import {
 export {
   addressSchema,
   addressCreateSchema,
+  addressReturnSchema,
+  addressReturnIdSchema,
   categorySchema,
   categoryCreateSchema,
   categoryReadSchema,
+  categoryReturnIdSchema,
   realEstateByCategorySchema,
   realEstateSchema,
   realEstateCreateSchema,
-  realEstateAdressSchema,
+  realEstateReturnSchema,
   realEstateReadSchema,
   scheduleSchema,
   scheduleCreateSchema,
@@ -45,4 +55,5 @@ export {
   userReturnSchema,
   userReadSchema,
   userUpdateSchema,
+  categoryReturnSchema,
 };

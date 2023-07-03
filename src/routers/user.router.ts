@@ -19,10 +19,24 @@ userRouter.get(
   userControllers.getAllUsers
 );
 
-userRouter.patch('/:id', userControllers.updateUser);
-middlewares.validateBody(userUpdateSchema),
+userRouter.patch(
+  '/:id',
+
   middlewares.verifyToken,
-  middlewares.verifyAdm,
-  userRouter.delete('/:id');
+  /*   middlewares.verifyAdm, */
+
+  middlewares.validateId,
+  middlewares.validateBody(userUpdateSchema),
+  middlewares.validateTypeOfUser,
+  userControllers.updateUser
+);
+
+userRouter.delete(
+  '/:id',
+  middlewares.validateId,
+  middlewares.verifyToken,
+  middlewares.validateTypeOfUser,
+  userControllers.deletUser
+);
 
 export default userRouter;

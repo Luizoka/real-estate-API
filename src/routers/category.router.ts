@@ -1,11 +1,21 @@
 import { Router } from 'express';
+import categoryControllers from '../controllers/category.controllers';
+import middlewares from '../middlewares';
+import { categoryCreateSchema, categorySchema } from '../schemas';
 
 const categorieRouter: Router = Router();
 
-categorieRouter.post('');
+categorieRouter.post(
+  '',
+  middlewares.verifyToken,
+  middlewares.verifyAdm,
+  middlewares.validateBody(categoryCreateSchema),
+  middlewares.uniqueCategory,
+  categoryControllers.createCategory
+);
 
-categorieRouter.get('');
+categorieRouter.get('', categoryControllers.getAllCategories);
 
-categorieRouter.get('/:id/realEstate');
+categorieRouter.get('/:id/realEstate', categoryControllers.getCategoryById);
 
 export default categorieRouter;

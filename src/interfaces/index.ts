@@ -1,7 +1,13 @@
-import { AdressCreate, AddressRepo, AdressUpdate } from './address.interfaces';
+import {
+  AddressCreate,
+  AddressRepo,
+  AddressUpdate,
+  AddressReturn,
+} from './address.interfaces';
 import {
   CategoryCreate,
   CategoryRead,
+  CategoryReturn,
   CategoryRealEstateFilter,
   CategoryRepo,
   CategoryUpdate,
@@ -9,8 +15,8 @@ import {
 import {
   RealEstateCreate,
   RealEstateRead,
-  RealEstateAdressSchema,
-  RealEstateUpdate,
+  realEstateReturn,
+  RealEstateUpdade,
 } from './realEstate.interfaces';
 
 import { ScheduleCreate, ScheduleRead, ScheduleRepo } from './schedule.interfaces';
@@ -25,18 +31,20 @@ import {
 } from './user.interfaces';
 
 export {
-  AdressCreate,
+  AddressCreate,
   AddressRepo,
-  AdressUpdate,
+  AddressUpdate,
+  AddressReturn,
   CategoryCreate,
   CategoryRead,
   CategoryRealEstateFilter,
   CategoryRepo,
+  CategoryReturn,
   CategoryUpdate,
   RealEstateCreate,
   RealEstateRead,
-  RealEstateAdressSchema,
-  RealEstateUpdate,
+  realEstateReturn,
+  RealEstateUpdade,
   ScheduleCreate,
   ScheduleRead,
   ScheduleRepo,

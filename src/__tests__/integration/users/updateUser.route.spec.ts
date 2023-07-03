@@ -28,9 +28,7 @@ describe('PATCH /users', () => {
     await userRepo.remove(users);
 
     userAdmin = await userRepo.save(updateUserRouteMock.userAdminTemplate);
-    userNotAdmin = await userRepo.save(
-      updateUserRouteMock.userNotAdminTemplate
-    );
+    userNotAdmin = await userRepo.save(updateUserRouteMock.userNotAdminTemplate);
 
     updateAdminUrl = baseUrl + `/${userAdmin.id}`;
     updateUserUrl = baseUrl + `/${userNotAdmin.id}`;
@@ -43,10 +41,7 @@ describe('PATCH /users', () => {
   it('Success: Admin must be able to update a user - Admin token - Full body', async () => {
     const response = await supertest(app)
       .patch(updateUserUrl)
-      .set(
-        'Authorization',
-        `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`
-      )
+      .set('Authorization', `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`)
       .send(updateUserRouteMock.userComplete);
 
     const expectResults = {
@@ -67,10 +62,7 @@ describe('PATCH /users', () => {
   it('Success: Admin must be able to self update - Admin token - Full body', async () => {
     const response = await supertest(app)
       .patch(updateAdminUrl)
-      .set(
-        'Authorization',
-        `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`
-      )
+      .set('Authorization', `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`)
       .send(updateUserRouteMock.userComplete);
 
     const expectResults = {
@@ -115,10 +107,7 @@ describe('PATCH /users', () => {
   it('Success: Admin must be able to self update - Admin token - Partial', async () => {
     const response = await supertest(app)
       .patch(updateAdminUrl)
-      .set(
-        'Authorization',
-        `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`
-      )
+      .set('Authorization', `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`)
       .send(updateUserRouteMock.userPartial);
 
     const expectResults = {
@@ -159,10 +148,7 @@ describe('PATCH /users', () => {
   it("Success: Admin must not be able to update 'admin' field - Admin token - Partial", async () => {
     const response = await supertest(app)
       .patch(updateAdminUrl)
-      .set(
-        'Authorization',
-        `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`
-      )
+      .set('Authorization', `Bearer ${tokenMock.genToken(userAdmin.admin, userAdmin.id)}`)
       .send(updateUserRouteMock.userAdmin);
 
     const expectResults = {

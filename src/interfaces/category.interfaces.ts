@@ -6,6 +6,7 @@ import { DeepPartial, Repository } from 'typeorm';
 
 import {
   categorySchema,
+  categoryReturnSchema,
   categoryCreateSchema,
   categoryReadSchema,
   realEstateByCategorySchema,
@@ -14,6 +15,8 @@ import {
 type CategoryCreate = z.infer<typeof categoryCreateSchema>;
 
 type CategoryRead = z.infer<typeof categoryReadSchema>;
+
+type CategoryReturn = z.infer<typeof categoryReturnSchema>;
 
 type CategoryRealEstateFilter = z.infer<typeof realEstateByCategorySchema>;
 
@@ -26,4 +29,5 @@ export {
   CategoryRealEstateFilter,
   CategoryRepo,
   CategoryUpdate,
+  CategoryReturn,
 };

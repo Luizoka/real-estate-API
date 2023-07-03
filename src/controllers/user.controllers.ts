@@ -19,10 +19,15 @@ const updateUser = async (req: Request, res: Response): Promise<Response> => {
   const foundUser = res.locals.user;
   const userUpdate = req.body;
   const userId = req.params.id;
-  console.log('CONTROLLER', req.body);
+
   const user: UserReturn = await userServices.updateUser(userId, foundUser, userUpdate);
 
   return res.status(200).json(user);
 };
 
-export default { createUser, getAllUsers, updateUser };
+const deletUser = async (req: Request, res: Response): Promise<Response> => {
+  await userServices.deleteUser(res.locals.foundEntity);
+  return res.status(204).json();
+};
+
+export default { createUser, getAllUsers, updateUser, deletUser };

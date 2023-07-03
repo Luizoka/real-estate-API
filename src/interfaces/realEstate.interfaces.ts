@@ -2,7 +2,7 @@ import { z } from 'zod';
 import {
   realEstateSchema,
   realEstateCreateSchema,
-  realEstateAdressSchema,
+  realEstateReturnSchema,
   realEstateReadSchema,
 } from '../schemas';
 
@@ -12,16 +12,8 @@ import { DeepPartial } from 'typeorm';
 type RealEstateCreate = z.infer<typeof realEstateCreateSchema>;
 type RealEstateRead = z.infer<typeof realEstateReadSchema>;
 
-type RealEstateAdressSchema = z.infer<typeof realEstateAdressSchema>;
-
-type RealEstateUpdate = DeepPartial<RealEstate>;
+type realEstateReturn = z.infer<typeof realEstateReturnSchema>;
 
 type RealEstateUpdade = DeepPartial<RealEstate>;
 
-export {
-  RealEstateCreate,
-  RealEstateRead,
-  RealEstateAdressSchema,
-  RealEstateUpdate,
-  RealEstateUpdade,
-};
+export { RealEstateCreate, RealEstateRead, realEstateReturn, RealEstateUpdade };

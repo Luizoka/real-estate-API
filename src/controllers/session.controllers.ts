@@ -7,7 +7,7 @@ import { Request, Response } from 'express';
 const login = async (req: Request, res: Response): Promise<Response> => {
   const token: SessionReturn = await sessionServices.createToken(req.body);
 
-  return res.status(201).json(token);
+  return res.status(200).json(token);
 };
 
 export default { login };

@@ -7,7 +7,7 @@ const addressSchema = z.object({
 
   zipCode: z.string().max(8),
 
-  number: z.string().max(7).nullish(),
+  number: z.string().max(7).nullable().optional(),
 
   city: z.string().max(20),
 
@@ -16,4 +16,14 @@ const addressSchema = z.object({
 
 const addressCreateSchema = addressSchema.omit({ id: true });
 
-export { addressSchema, addressCreateSchema };
+const addressReturnSchema = addressSchema;
+
+const addressReturnIdSchema = addressSchema.omit({
+  street: true,
+  zipCode: true,
+  number: true,
+  city: true,
+  state: true,
+});
+
+export { addressSchema, addressCreateSchema, addressReturnSchema, addressReturnIdSchema };

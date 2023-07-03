@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import { realEstateControllers } from '../controllers';
 
 const realEstateRouter: Router = Router();
 
-realEstateRouter.post('');
+realEstateRouter.post('', realEstateControllers.createRealEstate);
 
 realEstateRouter.get('');
 

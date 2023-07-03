@@ -31,12 +31,10 @@ const updateUser = async (
   user: User,
   payload: UserUpdate
 ): Promise<UserReturn> => {
-  console.log('AquiID', userId);
-  console.log('Aquipayload', payload);
-
   if (payload.password) {
     payload.password = await hash(payload.password, 10);
   }
+
   const foundUser = await userRepository.findOneBy({ id: Number(userId) });
 
   if (!foundUser) throw new AppError('User not found', 404);
@@ -44,11 +42,12 @@ const updateUser = async (
   const userUpdated: User = await userRepository.create({ ...foundUser, ...payload });
 
   await userRepository.save(userUpdated);
-  console.log('Aqui', userUpdated);
-  console.log('Aquifound', foundUser);
+
   return userReturnSchema.parse(userUpdated);
 };
 
-const deleteUser = async () => {};
+const deleteUser = async (user: User): Promise<void> => {
+  await userRepository.softRemove(user);
+};
 
 export default { createUser, getAllUsers, updateUser, deleteUser };

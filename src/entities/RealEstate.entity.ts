@@ -37,7 +37,7 @@ export class RealEstate {
 
   @OneToOne(() => Address)
   @JoinColumn()
-  adress: Address;
+  address: Address;
 
   @ManyToOne(() => Category, (category) => category.realEstates)
   category: Category;

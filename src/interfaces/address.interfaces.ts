@@ -2,12 +2,14 @@ import { z } from 'zod';
 import { Repository, DeepPartial } from 'typeorm';
 import { Address } from '../entities';
 
-import { addressCreateSchema } from '../schemas';
+import { addressCreateSchema, addressReturnSchema } from '../schemas';
 
-type AdressCreate = z.infer<typeof addressCreateSchema>;
+type AddressCreate = z.infer<typeof addressCreateSchema>;
+
+type AddressReturn = z.infer<typeof addressReturnSchema>;
 
 type AddressRepo = Repository<Address>;
 
-type AdressUpdate = DeepPartial<Address>;
+type AddressUpdate = DeepPartial<Address>;
 
-export { AdressCreate, AddressRepo, AdressUpdate };
+export { AddressCreate, AddressRepo, AddressUpdate, AddressReturn };

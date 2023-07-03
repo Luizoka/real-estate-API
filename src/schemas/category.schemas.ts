@@ -8,9 +8,11 @@ const categorySchema = z.object({
 
 const categoryCreateSchema = categorySchema.omit({ id: true });
 
-const categoryReturnSchema = categorySchema.omit({ id: true });
+const categoryReturnSchema = categorySchema;
 
-const categoryReadSchema = categoryCreateSchema.array();
+const categoryReturnIdSchema = categorySchema.omit({ name: true });
+
+const categoryReadSchema = categorySchema.array();
 
 const realEstateByCategorySchema = categoryReturnSchema.extend({
   realEstate: realEstateSchema.array(),
@@ -20,5 +22,7 @@ export {
   categorySchema,
   categoryCreateSchema,
   categoryReadSchema,
+  categoryReturnSchema,
+  categoryReturnIdSchema,
   realEstateByCategorySchema,
 };
