@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { RealEstate } from './RealEstate.entity';
+/* import { RealEstateCategories } from './RealEstateCategories.entity'; */
 
 @Entity('categories')
 export class Category {
@@ -18,6 +19,6 @@ export class Category {
   @Column({ type: 'varchar', length: 45, unique: true })
   name: string;
 
-  @OneToMany(() => RealEstate, (realEstates) => realEstates.category)
+  @OneToMany(() => RealEstate, (r) => r.category)
   realEstates: RealEstate[];
 }

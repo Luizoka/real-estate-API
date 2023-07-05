@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -31,16 +32,21 @@ export class User {
   password: string;
 
   @CreateDateColumn({ type: 'date' })
-  createdAt: Date;
+  createdAt: string;
 
   @UpdateDateColumn({ type: 'date' })
-  updatedAt: Date;
+  updatedAt: string;
 
   @DeleteDateColumn({ type: 'date', nullable: true })
-  deletedAt: Date | null;
+  deletedAt: string | null;
 
-  @OneToMany(() => Schedule, (schedules) => schedules.user)
-  schedules: Schedule[];
+  /*   @OneToMany(() => Schedule, (schedules) => schedules.user)
+  schedules: Schedule[]; */
+
+  //! SCHEDULE
+  @ManyToMany(() => Schedule)
+  @JoinTable()
+  schedules: Array<Schedule>;
 
   @BeforeInsert()
   @BeforeUpdate()

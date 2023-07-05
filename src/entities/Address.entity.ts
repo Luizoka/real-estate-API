@@ -4,9 +4,11 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { RealEstate } from './RealEstate.entity';
 
 @Entity('addresses')
 export class Address {
@@ -27,4 +29,7 @@ export class Address {
 
   @Column({ type: 'varchar', length: 2 })
   state: string;
+
+  /*   @OneToMany(() => RealEstate, (realEstates) => realEstates.address)
+  realEstates: RealEstate[]; */
 }

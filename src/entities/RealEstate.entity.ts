@@ -4,6 +4,7 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -14,6 +15,7 @@ import {
 import { Address } from './Address.entity';
 import { Category } from './Category.entity';
 import { Schedule } from './Schedule.entity';
+/* import { RealEstateCategories } from './RealEstateCategories.entity'; */
 
 @Entity('real_estate')
 export class RealEstate {
@@ -35,13 +37,31 @@ export class RealEstate {
   @UpdateDateColumn({ type: 'date' })
   updatedAt: string;
 
+  //! ADRESS
+
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
 
-  @ManyToOne(() => Category, (category) => category.realEstates)
+  /*   @ManyToOne(() => Address, (address) => address.realEstates)
+  address: Address; */
+
+  //! CATEGORIA
+  @ManyToOne(() => Category, (c) => c.realEstates)
   category: Category;
 
-  @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
-  schedules: Schedule[];
+  /*   @ManyToMany(() => Category)
+  @JoinTable()
+  category: Category; */
+
+  //? SCHEDULE
+  /*   @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
+  schedules: Schedule[]; */
+
+  /*   @ManyToMany(() => Schedule)
+  @JoinTable()
+  schedules: Array<Schedule>; */
+
+  /*   @OneToMany(() => RealEstateCategories, (category) => category.realEstate)
+  realEstateCategories: Array<RealEstateCategories>; */
 }

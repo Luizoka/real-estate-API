@@ -9,7 +9,7 @@ import {
   categoryCreateSchema,
   categoryReadSchema,
   categoryReturnSchema,
-  categoryReturnIdSchema,
+  categoryReturnNameSchema,
   realEstateByCategorySchema,
 } from './category.schemas';
 import {
@@ -40,7 +40,7 @@ export {
   categorySchema,
   categoryCreateSchema,
   categoryReadSchema,
-  categoryReturnIdSchema,
+  categoryReturnNameSchema,
   realEstateByCategorySchema,
   realEstateSchema,
   realEstateCreateSchema,

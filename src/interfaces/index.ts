@@ -8,6 +8,7 @@ import {
   CategoryCreate,
   CategoryRead,
   CategoryReturn,
+  CategoryReturnName,
   CategoryRealEstateFilter,
   CategoryRepo,
   CategoryUpdate,
@@ -15,8 +16,8 @@ import {
 import {
   RealEstateCreate,
   RealEstateRead,
-  realEstateReturn,
-  RealEstateUpdade,
+  RealEstateReturn,
+  RealEstateRepo,
 } from './realEstate.interfaces';
 
 import { ScheduleCreate, ScheduleRead, ScheduleRepo } from './schedule.interfaces';
@@ -40,11 +41,12 @@ export {
   CategoryRealEstateFilter,
   CategoryRepo,
   CategoryReturn,
+  CategoryReturnName,
   CategoryUpdate,
   RealEstateCreate,
   RealEstateRead,
-  realEstateReturn,
-  RealEstateUpdade,
+  RealEstateReturn,
+  RealEstateRepo,
   ScheduleCreate,
   ScheduleRead,
   ScheduleRepo,

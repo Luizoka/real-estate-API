@@ -10,6 +10,7 @@ import {
   categoryCreateSchema,
   categoryReadSchema,
   realEstateByCategorySchema,
+  categoryReturnNameSchema,
 } from '../schemas';
 
 type CategoryCreate = z.infer<typeof categoryCreateSchema>;
@@ -17,6 +18,8 @@ type CategoryCreate = z.infer<typeof categoryCreateSchema>;
 type CategoryRead = z.infer<typeof categoryReadSchema>;
 
 type CategoryReturn = z.infer<typeof categoryReturnSchema>;
+
+type CategoryReturnName = z.infer<typeof categoryReturnNameSchema>;
 
 type CategoryRealEstateFilter = z.infer<typeof realEstateByCategorySchema>;
 
@@ -30,4 +33,5 @@ export {
   CategoryRepo,
   CategoryUpdate,
   CategoryReturn,
+  CategoryReturnName,
 };

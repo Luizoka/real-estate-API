@@ -7,13 +7,16 @@ import {
 } from '../schemas';
 
 import { RealEstate } from '../entities';
-import { DeepPartial } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 
 type RealEstateCreate = z.infer<typeof realEstateCreateSchema>;
-type RealEstateRead = z.infer<typeof realEstateReadSchema>;
 
-type realEstateReturn = z.infer<typeof realEstateReturnSchema>;
+type RealEstateReturn = z.infer<typeof realEstateReturnSchema>;
 
-type RealEstateUpdade = DeepPartial<RealEstate>;
+type RealEstateRead = Array<RealEstateReturn>;
 
-export { RealEstateCreate, RealEstateRead, realEstateReturn, RealEstateUpdade };
+type RealEstateRepo = Repository<RealEstate>;
+
+/* type RealEstateUpdade = DeepPartial<RealEstate>; */
+
+export { RealEstateCreate, RealEstateRead, RealEstateReturn, RealEstateRepo };

@@ -10,7 +10,7 @@ const categoryCreateSchema = categorySchema.omit({ id: true });
 
 const categoryReturnSchema = categorySchema;
 
-const categoryReturnIdSchema = categorySchema.omit({ name: true });
+const categoryReturnNameSchema = categorySchema.omit({ id: true });
 
 const categoryReadSchema = categorySchema.array();
 
@@ -23,6 +23,6 @@ export {
   categoryCreateSchema,
   categoryReadSchema,
   categoryReturnSchema,
-  categoryReturnIdSchema,
+  categoryReturnNameSchema,
   realEstateByCategorySchema,
 };
