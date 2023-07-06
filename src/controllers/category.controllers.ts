@@ -1,7 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import categoryServices from '../services/category.services';
 import { categoryRepository } from '../repositories';
-import { CategoryCreate, CategoryRead, CategoryReturn } from '../interfaces';
+import {
+  CategoryCreate,
+  CategoryRead,
+  CategoryReturn,
+  RealEstateReturnFilter,
+} from '../interfaces';
 
 const createCategory = async (
   req: Request,
@@ -30,9 +35,11 @@ const getCategoryById = async (
 ): Promise<Response> => {
   const categoryId = Number(req.params.id);
 
-  const category: CategoryReturn = await categoryServices.getCategorybyId(categoryId);
+  const realEstates: RealEstateReturnFilter = await categoryServices.getCategorybyId(
+    categoryId
+  );
 
-  return res.status(200).json(category);
+  return res.status(200).json(realEstates);
 };
 
 export default { createCategory, getAllCategories, getCategoryById };

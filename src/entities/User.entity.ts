@@ -40,14 +40,14 @@ export class User {
   @DeleteDateColumn({ type: 'date', nullable: true })
   deletedAt: string | null;
 
-  /*   @OneToMany(() => Schedule, (schedules) => schedules.user)
-  schedules: Schedule[]; */
+  @OneToMany(() => Schedule, (s) => s.user)
+  schedules: Schedule;
 
   //! SCHEDULE
-  @ManyToMany(() => Schedule)
+  /*  @ManyToMany(() => Schedule)
   @JoinTable()
-  schedules: Array<Schedule>;
-
+  schedules: Schedule;
+ */
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {

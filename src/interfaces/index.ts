@@ -18,9 +18,17 @@ import {
   RealEstateRead,
   RealEstateReturn,
   RealEstateRepo,
+  RealEstateReturnFilter,
+  RealEstateOnlyReturn,
+  RealEstateOnly,
 } from './realEstate.interfaces';
 
-import { ScheduleCreate, ScheduleRead, ScheduleRepo } from './schedule.interfaces';
+import {
+  ScheduleCreate,
+  ScheduleRead,
+  ScheduleRepo,
+  ScheduleReturn,
+} from './schedule.interfaces';
 import { SessionCreate, SessionReturn } from './session.interfaces';
 
 import {
@@ -46,10 +54,14 @@ export {
   RealEstateCreate,
   RealEstateRead,
   RealEstateReturn,
+  RealEstateReturnFilter,
+  RealEstateOnlyReturn,
+  RealEstateOnly,
   RealEstateRepo,
   ScheduleCreate,
   ScheduleRead,
   ScheduleRepo,
+  ScheduleReturn,
   SessionCreate,
   SessionReturn,
   UserCreate,

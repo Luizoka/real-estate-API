@@ -23,13 +23,13 @@ const realEstateSchema = z.object({
     .default(0)
     .or(z.string().regex(/^\d+(\.\d{2})?$/)),
 
-  size: z.number().int(),
+  size: z.number().int().positive(),
 
   sold: z.boolean().default(() => false),
 
   address: addressSchema,
 
-  category: categorySchema,
+  category: categoryReturnNameSchema,
 
   categoryId: z.number().int(),
 
@@ -51,9 +51,38 @@ const realEstateCreateSchema = realEstateSchema
 
 const realEstateReturnSchema = realEstateSchema.omit({ categoryId: true }).extend({
   address: addressReturnSchema,
-  /*   category: categoryReturnNameSchema, */
   category: categoryReturnNameSchema,
 });
+
+const realEstateOnlyWithoutNameSchema = realEstateSchema
+  .omit({
+    address: true,
+    category: true,
+    categoryId: true,
+  })
+  .array();
+
+const realEstateOnlySchema = realEstateSchema
+  .omit({
+    address: true,
+    category: true,
+    categoryId: true,
+  })
+  .array();
+
+const realEstateReturnFilterSchema = realEstateSchema
+  .omit({
+    categoryId: true,
+    address: true,
+    id: true,
+    size: true,
+    value: true,
+    sold: true,
+    createdAt: true,
+    updatedAt: true,
+    category: true,
+  })
+  .extend({ id: z.number(), name: z.string(), realEstate: realEstateOnlySchema });
 
 const realEstateReadSchema = realEstateReturnSchema.array();
 
@@ -62,4 +91,7 @@ export {
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
+  realEstateReturnFilterSchema,
+  realEstateOnlySchema,
+  realEstateOnlyWithoutNameSchema,
 };

@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import categoryControllers from '../controllers/category.controllers';
 import middlewares from '../middlewares';
-import { categoryCreateSchema, categorySchema } from '../schemas';
+import {
+  categoryCreateSchema,
+  categorySchema,
+  realEstateReturnFilterSchema,
+} from '../schemas';
 
 const categorieRouter: Router = Router();
 

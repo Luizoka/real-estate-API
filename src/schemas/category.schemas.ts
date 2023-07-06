@@ -14,15 +14,10 @@ const categoryReturnNameSchema = categorySchema.omit({ id: true });
 
 const categoryReadSchema = categorySchema.array();
 
-const realEstateByCategorySchema = categoryReturnSchema.extend({
-  realEstate: realEstateSchema.array(),
-});
-
 export {
   categorySchema,
   categoryCreateSchema,
   categoryReadSchema,
   categoryReturnSchema,
   categoryReturnNameSchema,
-  realEstateByCategorySchema,
 };

@@ -55,13 +55,13 @@ export class RealEstate {
   category: Category; */
 
   //? SCHEDULE
-  /*   @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
-  schedules: Schedule[]; */
+  @OneToMany(() => Schedule, (s) => s.realEstate)
+  schedules: Schedule;
 
-  /*   @ManyToMany(() => Schedule)
+  /*    @ManyToMany(() => Schedule)
   @JoinTable()
-  schedules: Array<Schedule>; */
-
+  schedules: Array<Schedule>; 
+ */
   /*   @OneToMany(() => RealEstateCategories, (category) => category.realEstate)
   realEstateCategories: Array<RealEstateCategories>; */
 }

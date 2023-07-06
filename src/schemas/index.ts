@@ -10,18 +10,21 @@ import {
   categoryReadSchema,
   categoryReturnSchema,
   categoryReturnNameSchema,
-  realEstateByCategorySchema,
 } from './category.schemas';
 import {
   realEstateSchema,
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
+  realEstateReturnFilterSchema,
+  realEstateOnlySchema,
+  realEstateOnlyWithoutNameSchema,
 } from './realEstate.schemas';
 import {
   scheduleSchema,
   scheduleCreateSchema,
   scheduleReadSchema,
+  scheduleReturnSchema,
 } from './schedule.schemas';
 import { sessionSchema } from './session.schemas';
 import {
@@ -41,14 +44,17 @@ export {
   categoryCreateSchema,
   categoryReadSchema,
   categoryReturnNameSchema,
-  realEstateByCategorySchema,
   realEstateSchema,
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
+  realEstateReturnFilterSchema,
+  realEstateOnlyWithoutNameSchema,
+  realEstateOnlySchema,
   scheduleSchema,
   scheduleCreateSchema,
   scheduleReadSchema,
+  scheduleReturnSchema,
   sessionSchema,
   userSchema,
   userCreateSchema,

@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { realEstateControllers } from '../controllers';
 import middlewares from '../middlewares';
-import { realEstateCreateSchema, realEstateReadSchema } from '../schemas';
+import { addressSchema, realEstateCreateSchema, realEstateReadSchema } from '../schemas';
+import { validateBody } from '../middlewares/validateBody.middleware';
 
 const realEstateRouter: Router = Router();
 
@@ -13,10 +14,6 @@ realEstateRouter.post(
   realEstateControllers.createRealEstate
 );
 
-realEstateRouter.get(
-  '',
-  middlewares.validateBody(realEstateReadSchema),
-  realEstateControllers.getAllRealEstates
-);
+realEstateRouter.get('', realEstateControllers.getAllRealEstates);
 
 export default realEstateRouter;
