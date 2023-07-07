@@ -1,12 +1,6 @@
 import { z } from 'zod';
 
-import {
-  userSchema,
-  userCreateSchema,
-  userReturnSchema,
-  userReadSchema,
-  userUpdateSchema,
-} from '../schemas';
+import { userCreateSchema, userReturnSchema, userReadSchema } from '../schemas';
 
 import { DeepPartial, Repository } from 'typeorm';
 

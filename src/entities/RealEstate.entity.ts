@@ -1,11 +1,8 @@
 import {
   Column,
   CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -15,7 +12,6 @@ import {
 import { Address } from './Address.entity';
 import { Category } from './Category.entity';
 import { Schedule } from './Schedule.entity';
-/* import { RealEstateCategories } from './RealEstateCategories.entity'; */
 
 @Entity('real_estate')
 export class RealEstate {
@@ -44,7 +40,6 @@ export class RealEstate {
   @ManyToOne(() => Category, (c) => c.realEstates)
   category: Category;
 
-  //? SCHEDULE
   @OneToMany(() => Schedule, (s) => s.realEstate)
   schedules: Schedule[];
 }

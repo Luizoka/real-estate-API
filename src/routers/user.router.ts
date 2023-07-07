@@ -23,8 +23,6 @@ userRouter.patch(
   '/:id',
 
   middlewares.verifyToken,
-  /*   middlewares.verifyAdm, */
-
   middlewares.validateId,
   middlewares.validateBody(userUpdateSchema),
   middlewares.validateTypeOfUser,

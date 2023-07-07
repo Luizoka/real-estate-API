@@ -1,19 +1,10 @@
 import { number, z } from 'zod';
 import {
   addressCreateSchema,
-  addressReturnIdSchema,
   addressReturnSchema,
   addressSchema,
 } from './address.schema';
-import {
-  categoryCreateSchema,
-  categoryReturnNameSchema,
-  categoryReturnSchema,
-  /*   categoryReturnIdSchema,
-  categoryReturnSchema, */
-  categorySchema,
-} from './category.schemas';
-import { scheduleReadSchema } from './schedule.schemas';
+import { categoryReturnNameSchema, categoryReturnSchema } from './category.schemas';
 
 const realEstateSchema = z.object({
   id: z.number().positive(),

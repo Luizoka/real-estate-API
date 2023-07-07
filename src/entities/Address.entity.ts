@@ -1,14 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { RealEstate } from './RealEstate.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('addresses')
 export class Address {
@@ -29,7 +19,4 @@ export class Address {
 
   @Column({ type: 'varchar', length: 2 })
   state: string;
-
-  /*   @OneToMany(() => RealEstate, (realEstates) => realEstates.address)
-  realEstates: RealEstate[]; */
 }

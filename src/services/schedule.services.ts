@@ -135,11 +135,6 @@ const getAllSchedules = async (
   const value = getSchedules?.value!;
   const user = getUser;
 
-  console.log('Veio os schedules', getSchedules);
-  console.log('Veio os veio o endeco', getAddress?.address);
-  console.log('Veio os veio a categoria', getCategory?.category);
-  console.log('TEMOS  UM USER ', user);
-
   if (!getSchedules) throw new AppError('RealEstate not found', 404);
 
   const schedulesFinal = {

@@ -1,16 +1,14 @@
 import { z } from 'zod';
 import {
-  realEstateSchema,
   realEstateCreateSchema,
   realEstateReturnSchema,
-  realEstateReadSchema,
   realEstateReturnFilterCategorySchema,
   realEstateOnlySchema,
   realEstateOnlyWithoutNameSchema,
 } from '../schemas';
 
 import { RealEstate } from '../entities';
-import { DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 type RealEstateCreate = z.infer<typeof realEstateCreateSchema>;
 

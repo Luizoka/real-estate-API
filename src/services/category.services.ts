@@ -39,8 +39,6 @@ const getCategorybyId = async (
     category: foundCategory,
   });
 
-  console.log('resposta', response);
-
   const filterFinal = realEstateReturnFilterCategorySchema.parse({
     id: foundCategory.id,
     name: foundCategory.name,

@@ -5,11 +5,10 @@ import { Category } from '../entities';
 import { DeepPartial, Repository } from 'typeorm';
 
 import {
-  categorySchema,
   categoryReturnSchema,
   categoryCreateSchema,
   categoryReadSchema,
-  realEstateByCategorySchema,
+  realEstateReturnFilterCategorySchema,
   categoryReturnNameSchema,
 } from '../schemas';
 
@@ -21,7 +20,7 @@ type CategoryReturn = z.infer<typeof categoryReturnSchema>;
 
 type CategoryReturnName = z.infer<typeof categoryReturnNameSchema>;
 
-type CategoryRealEstateFilter = z.infer<typeof realEstateByCategorySchema>;
+type CategoryRealEstateFilter = z.infer<typeof realEstateReturnFilterCategorySchema>;
 
 type CategoryRepo = Repository<Category>;
 type CategoryUpdate = DeepPartial<Category>;

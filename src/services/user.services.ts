@@ -1,14 +1,8 @@
-import { UserCreate, UserRead, UserReturn, UserUpdate, UserRepo } from '../interfaces';
+import { UserCreate, UserRead, UserReturn, UserUpdate } from '../interfaces';
 import { User } from '../entities';
 import { userRepository } from '../repositories';
-import {
-  userSchema,
-  userCreateSchema,
-  userReturnSchema,
-  userReadSchema,
-  userUpdateSchema,
-} from '../schemas';
-import { AppDataSource } from '../data-source';
+import { userReturnSchema, userReadSchema } from '../schemas';
+
 import { hash } from 'bcryptjs';
 import { AppError } from '../errors';
 

@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 import {
-  scheduleSchema,
   scheduleCreateSchema,
   scheduleReadSchema,
   scheduleReturnSchema,

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { realEstateSchema } from './realEstate.schemas';
 import { userReturnSchema, userSchema } from './user.schemas';
 import { addressReturnSchema } from './address.schema';
-import { categoryReturnSchema, categorySchema } from './category.schemas';
+import { categoryReturnSchema } from './category.schemas';
 
 const scheduleSchema = z.object({
   id: z.number().positive(),

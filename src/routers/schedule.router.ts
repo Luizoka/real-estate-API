@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import scheduleControllers from '../controllers/schedule.controllers';
 import middlewares from '../middlewares';
-import { realEstateReturnFilterScheduleSchema, scheduleCreateSchema } from '../schemas';
+import { scheduleCreateSchema } from '../schemas';
 
 const scheduleRouter: Router = Router();
 

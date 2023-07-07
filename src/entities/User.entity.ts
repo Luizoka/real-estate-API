@@ -5,8 +5,6 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -43,11 +41,6 @@ export class User {
   @OneToMany(() => Schedule, (s) => s.user)
   schedule: Schedule;
 
-  //! SCHEDULE
-  /*  @ManyToMany(() => Schedule)
-  @JoinTable()
-  schedules: Schedule;
- */
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {

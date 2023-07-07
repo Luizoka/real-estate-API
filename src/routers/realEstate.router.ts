@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import { realEstateControllers } from '../controllers';
 import middlewares from '../middlewares';
-import { addressSchema, realEstateCreateSchema, realEstateReadSchema } from '../schemas';
-import { validateBody } from '../middlewares/validateBody.middleware';
+import { realEstateCreateSchema } from '../schemas';
 
 const realEstateRouter: Router = Router();
 
