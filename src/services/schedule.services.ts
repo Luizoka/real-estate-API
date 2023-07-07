@@ -1,13 +1,15 @@
-import { Schedule } from '../entities';
+import { Address, RealEstate, Schedule } from '../entities';
 import { AppError } from '../errors';
 import {
   RealEstateOnlyReturn,
   RealEstateRepo,
   RealEstateReturn,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
   ScheduleCreate,
   ScheduleRead,
   ScheduleReturn,
+  ScheduleByRealEstateReturn,
+  ScheduleOnly,
   ScheduleRepo,
   UserReturn,
   UserCreate,
@@ -17,75 +19,56 @@ import {
   scheduleRepository,
   userRepository,
 } from '../repositories';
+import addressRepository from '../repositories/address.repository';
 import {
   realEstateCreateSchema,
   realEstateOnlySchema,
   realEstateOnlyWithoutNameSchema,
+  realEstateReturnFilterScheduleSchema,
   realEstateReturnSchema,
   realEstateSchema,
   scheduleReturnSchema,
   scheduleSchema,
+  userReturnSchema,
 } from '../schemas';
 
 const createSchedule = async (
   userId: number,
   payload: ScheduleCreate
-): Promise<Schedule> => {
+): Promise<ScheduleReturn> => {
   const { hour, date, realEstateId } = payload;
   const foundUser: UserCreate = (await userRepository.findOneBy({ id: userId }))!;
-  const foundRealEstate = (await realEstateRepository.findOneBy({
+  const realEstate = (await realEstateRepository.findOneBy({
     id: payload.realEstateId,
   }))!;
 
-  /*   console.log('encontrou o realstate', foundRealEstate);
+  if (!realEstate) throw new AppError('RealEstate not found', 404);
 
-  console.log('encontrou o usuario', foundUser); */
-
-  const foundHour = (await scheduleRepository.findOneBy({
-    hour: payload.hour,
-  }))!;
-
-  /*   console.log('Rencontrou a hora', foundHour); */
-  const foundDate = (await scheduleRepository.findOneBy({
-    date: payload.date,
-  }))!;
-  /* 
-  console.log('encontrou o dia', foundDate); */
-
-  if (!foundRealEstate) throw new AppError('RealEstate not found', 404);
-  /* 
-  const RealEstateExistsInToSchedule = await scheduleRepository
-    .createQueryBuilder('realEstate')
+  const scheduleTimeReapt = await scheduleRepository
+    .createQueryBuilder('s')
+    .leftJoinAndSelect('s.realEstate', 'r')
+    .leftJoinAndSelect('s.user', 'u')
+    .where('s.hour =:hour', { hour })
+    .where('s.realEstateId =:realEstateId', { realEstateId })
+    .andWhere('s.date =:date', { date })
     .getMany();
-  console.log('encontrou o realstate com query', RealEstateExistsInToSchedule);
- */
-  const verifySametime = await scheduleRepository
-    .createQueryBuilder('scDate')
-    .where('scDate.realEstateId = :realEstateId', { realEstateId })
-    .where('scDate.hour = :hour', { hour })
-    .andWhere('scDate.date = :date', { date })
-    .getOne();
 
-  /*  console.log('este horario ja esta ocupado', verifySametime); */
-
-  if (verifySametime)
+  if (scheduleTimeReapt.length > 0)
     throw new AppError(
       'Schedule to this real estate at this date and time already exists',
       409
     );
-  const verifySameUserToSchedule = await scheduleRepository
-    .createQueryBuilder('scUser')
-    .where('scUser.userId = :userId', { userId })
-    .where('scUser.hour = :hour', { hour })
-    .andWhere('scUser.date = :date', { date })
-    .getOne();
 
-  console.log(
-    'temos um usuario marcando dois termin no mesmo horario',
-    verifySameUserToSchedule
-  );
+  const scheduleUserReapt = await scheduleRepository
+    .createQueryBuilder('s')
+    .leftJoinAndSelect('s.realEstate', 'r')
+    .leftJoinAndSelect('s.user', 'u')
+    .where('s.hour =:hour', { hour })
+    .where('s.userId =:userId', { userId })
+    .andWhere('s.date =:date', { date })
+    .getMany();
 
-  if (verifySameUserToSchedule)
+  if (scheduleUserReapt.length > 0)
     throw new AppError(
       'User schedule to this real estate at this date and time already exists',
       409
@@ -104,25 +87,74 @@ const createSchedule = async (
   const schedule: Schedule = scheduleRepository.create({
     ...payload,
     user: foundUser,
-    realEstate: foundRealEstate,
+    realEstate: realEstate,
   });
-
-  console.log('esse é o meu create', schedule);
 
   const saveSchedule = await scheduleRepository.save({
     ...schedule,
     userId: userId,
-    realEstateId: foundRealEstate.id,
+    realEstateId: realEstate.id,
   });
-
-  console.log('esse é o meu salve', saveSchedule);
-
-  const parse = scheduleReturnSchema.parse(saveSchedule);
-  console.log('esse é o meu parse', parse);
 
   return saveSchedule;
 };
 
-const getAllSchedules = async () => {};
+const getAllSchedules = async (
+  realEstateId: number
+): Promise<ScheduleByRealEstateReturn> => {
+  const getSchedules: RealEstate | null = await realEstateRepository
+    .createQueryBuilder('r')
+    .leftJoinAndSelect('r.schedules', 's')
+    .where('r.id = :realEstateId', { realEstateId })
+    .getOne();
+
+  const getAddress: RealEstate | null = await realEstateRepository
+    .createQueryBuilder('r')
+    .leftJoinAndSelect('r.address', 'a')
+    .where('r.id = :realEstateId', { realEstateId })
+    .getOne();
+
+  const getCategory: RealEstate | null = await realEstateRepository
+    .createQueryBuilder('r')
+    .leftJoinAndSelect('r.category', 'c')
+    .where('r.id = :realEstateId', { realEstateId })
+    .getOne();
+
+  const getUser: Schedule[] | null = await scheduleRepository
+    .createQueryBuilder('s')
+    .leftJoinAndSelect('s.user', 'u')
+    .where('s.realEstateId = :realEstateId', { realEstateId })
+    .getMany();
+
+  const address = getAddress?.address!;
+  const category = getCategory?.category!;
+  const createdAt = getSchedules?.createdAt!;
+  const size = getSchedules?.size!;
+  const sold = getSchedules?.sold!;
+  const updatedAt = getSchedules?.updatedAt!;
+  const value = getSchedules?.value!;
+  const user = getUser;
+
+  console.log('Veio os schedules', getSchedules);
+  console.log('Veio os veio o endeco', getAddress?.address);
+  console.log('Veio os veio a categoria', getCategory?.category);
+  console.log('TEMOS  UM USER ', user);
+
+  if (!getSchedules) throw new AppError('RealEstate not found', 404);
+
+  const schedulesFinal = {
+    id: realEstateId,
+    size: size,
+    sold: sold,
+    value: value,
+    updatedAt: updatedAt,
+    createdAt: createdAt,
+    address: address,
+    category: category,
+    schedules: getUser,
+  };
+
+  return schedulesFinal;
+};
 
 export default { createSchedule, getAllSchedules };

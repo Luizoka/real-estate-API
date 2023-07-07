@@ -18,7 +18,7 @@ import {
   RealEstateRead,
   RealEstateReturn,
   RealEstateRepo,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
   RealEstateOnlyReturn,
   RealEstateOnly,
 } from './realEstate.interfaces';
@@ -28,6 +28,8 @@ import {
   ScheduleRead,
   ScheduleRepo,
   ScheduleReturn,
+  ScheduleByRealEstateReturn,
+  ScheduleOnly,
 } from './schedule.interfaces';
 import { SessionCreate, SessionReturn } from './session.interfaces';
 
@@ -54,7 +56,7 @@ export {
   RealEstateCreate,
   RealEstateRead,
   RealEstateReturn,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
   RealEstateOnlyReturn,
   RealEstateOnly,
   RealEstateRepo,
@@ -62,6 +64,8 @@ export {
   ScheduleRead,
   ScheduleRepo,
   ScheduleReturn,
+  ScheduleByRealEstateReturn,
+  ScheduleOnly,
   SessionCreate,
   SessionReturn,
   UserCreate,

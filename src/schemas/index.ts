@@ -16,7 +16,7 @@ import {
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
   realEstateOnlySchema,
   realEstateOnlyWithoutNameSchema,
 } from './realEstate.schemas';
@@ -25,6 +25,8 @@ import {
   scheduleCreateSchema,
   scheduleReadSchema,
   scheduleReturnSchema,
+  scheduleOnlySchema,
+  realEstateReturnFilterScheduleSchema,
 } from './schedule.schemas';
 import { sessionSchema } from './session.schemas';
 import {
@@ -48,13 +50,15 @@ export {
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
   realEstateOnlyWithoutNameSchema,
   realEstateOnlySchema,
   scheduleSchema,
   scheduleCreateSchema,
   scheduleReadSchema,
   scheduleReturnSchema,
+  scheduleOnlySchema,
+  realEstateReturnFilterScheduleSchema,
   sessionSchema,
   userSchema,
   userCreateSchema,

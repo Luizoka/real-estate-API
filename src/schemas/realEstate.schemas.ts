@@ -13,6 +13,7 @@ import {
   categoryReturnSchema, */
   categorySchema,
 } from './category.schemas';
+import { scheduleReadSchema } from './schedule.schemas';
 
 const realEstateSchema = z.object({
   id: z.number().positive(),
@@ -51,7 +52,7 @@ const realEstateCreateSchema = realEstateSchema
 
 const realEstateReturnSchema = realEstateSchema.omit({ categoryId: true }).extend({
   address: addressReturnSchema,
-  category: categoryReturnNameSchema,
+  category: categoryReturnSchema,
 });
 
 const realEstateOnlyWithoutNameSchema = realEstateSchema
@@ -70,7 +71,7 @@ const realEstateOnlySchema = realEstateSchema
   })
   .array();
 
-const realEstateReturnFilterSchema = realEstateSchema
+const realEstateReturnFilterCategorySchema = realEstateSchema
   .omit({
     categoryId: true,
     address: true,
@@ -91,7 +92,7 @@ export {
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
   realEstateOnlySchema,
   realEstateOnlyWithoutNameSchema,
 };

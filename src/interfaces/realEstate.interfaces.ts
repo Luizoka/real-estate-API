@@ -4,7 +4,7 @@ import {
   realEstateCreateSchema,
   realEstateReturnSchema,
   realEstateReadSchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
   realEstateOnlySchema,
   realEstateOnlyWithoutNameSchema,
 } from '../schemas';
@@ -24,14 +24,16 @@ type RealEstateRead = Array<RealEstateReturn>;
 
 type RealEstateRepo = Repository<RealEstate>;
 
-type RealEstateReturnFilter = z.infer<typeof realEstateReturnFilterSchema>;
+type RealEstateReturnFilterCategory = z.infer<
+  typeof realEstateReturnFilterCategorySchema
+>;
 
 export {
   RealEstateCreate,
   RealEstateRead,
   RealEstateReturn,
   RealEstateRepo,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
   RealEstateOnlyReturn,
   RealEstateOnly,
 };

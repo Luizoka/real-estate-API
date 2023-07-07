@@ -32,36 +32,19 @@ export class RealEstate {
   size: number;
 
   @CreateDateColumn({ type: 'date' })
-  createdAt: string;
+  createdAt: string | Date;
 
   @UpdateDateColumn({ type: 'date' })
-  updatedAt: string;
-
-  //! ADRESS
+  updatedAt: string | Date;
 
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
 
-  /*   @ManyToOne(() => Address, (address) => address.realEstates)
-  address: Address; */
-
-  //! CATEGORIA
   @ManyToOne(() => Category, (c) => c.realEstates)
   category: Category;
 
-  /*   @ManyToMany(() => Category)
-  @JoinTable()
-  category: Category; */
-
   //? SCHEDULE
   @OneToMany(() => Schedule, (s) => s.realEstate)
-  schedules: Schedule;
-
-  /*    @ManyToMany(() => Schedule)
-  @JoinTable()
-  schedules: Array<Schedule>; 
- */
-  /*   @OneToMany(() => RealEstateCategories, (category) => category.realEstate)
-  realEstateCategories: Array<RealEstateCategories>; */
+  schedules: Schedule[];
 }

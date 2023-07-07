@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { realEstateSchema } from './realEstate.schemas';
-import { userSchema } from './user.schemas';
+import { userReturnSchema, userSchema } from './user.schemas';
+import { addressReturnSchema } from './address.schema';
+import { categoryReturnSchema, categorySchema } from './category.schemas';
 
 const scheduleSchema = z.object({
   id: z.number().positive(),
@@ -27,6 +29,36 @@ const scheduleCreateSchema = scheduleSchema.omit({
 
 const scheduleReturnSchema = scheduleSchema.omit({ user: true, realEstate: true });
 
-const scheduleReadSchema = scheduleSchema.array();
+const scheduleOnlySchema = scheduleSchema
+  .omit({
+    realEstate: true,
+    realEstateId: true,
+    userId: true,
+  })
+  .extend({ user: userReturnSchema.omit({ deletedAt: true, name: true, id: true }) })
+  .array();
 
-export { scheduleSchema, scheduleCreateSchema, scheduleReadSchema, scheduleReturnSchema };
+const realEstateReturnFilterScheduleSchema = realEstateSchema
+  .omit({
+    categoryId: true,
+    size: true,
+    value: true,
+    sold: true,
+    updatedAt: true,
+  })
+  .extend({
+    schedules: scheduleOnlySchema,
+    address: addressReturnSchema,
+    category: categoryReturnSchema,
+  });
+
+const scheduleReadSchema = scheduleReturnSchema.array();
+
+export {
+  scheduleSchema,
+  scheduleCreateSchema,
+  scheduleReadSchema,
+  scheduleReturnSchema,
+  scheduleOnlySchema,
+  realEstateReturnFilterScheduleSchema,
+};

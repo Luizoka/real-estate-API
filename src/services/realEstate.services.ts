@@ -22,27 +22,22 @@ const createRealEstate = async ({
   address,
   ...payload
 }: RealEstateCreate): Promise<RealEstateReturn> => {
-  //! categoria
   const id = payload.categoryId;
-  console.log('o id chegou no service', id);
 
   const foundCategory: CategoryReturn = (await categoryRepository.findOneBy({ id }))!;
 
   let finalCategory: CategoryReturnName;
   if (foundCategory) {
     finalCategory = foundCategory;
-    console.log('encontrou a categoria', foundCategory);
   } else {
     throw new AppError('Category not found', 400);
   }
 
-  //! endereco
   const searchStreet: string = address.street;
   const searchNumber: string | null = address.number!;
   const searchZipCode: string = address.zipCode;
   const searchState: string = address.state;
   const searchCity: string = address.city!;
-  console.log('rua  do body', searchStreet);
 
   const foundAddressStreet = await addressRepository.findOneBy({
     street: searchStreet,
@@ -77,8 +72,6 @@ const createRealEstate = async ({
   const newAddress: AddressCreate = addressRepository.create(address);
   const finalAddress: AddressReturn = await addressRepository.save(newAddress);
 
-  //! real state
-
   const realEstate: RealEstate = realEstateRepository.create({
     ...payload,
     address: finalAddress,
@@ -99,8 +92,6 @@ const getAllRealEstates = async (): Promise<RealEstateRead> => {
     .createQueryBuilder('r')
     .leftJoinAndSelect('r.address', 'a')
     .getMany();
-
-  console.log('get real estate ', allRealEstates);
 
   return allRealEstates;
 };

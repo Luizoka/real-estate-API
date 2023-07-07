@@ -4,7 +4,7 @@ import middlewares from '../middlewares';
 import {
   categoryCreateSchema,
   categorySchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
 } from '../schemas';
 
 const categorieRouter: Router = Router();

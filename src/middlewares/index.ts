@@ -6,7 +6,7 @@ import { verifyToken } from './verifyToken.middleware';
 import { validateTypeOfUser } from './validateTypeOfUser.middleware';
 import { validateId } from './validateId.middleware';
 import { uniqueCategory } from './verifyUniqueCategory.middleware';
-import { validateSchedule } from './validateSchedule.middleware';
+
 export default {
   handleError,
   confirmUniqueEmail,
@@ -16,5 +16,4 @@ export default {
   validateTypeOfUser,
   validateId,
   uniqueCategory,
-  validateSchedule,
 };

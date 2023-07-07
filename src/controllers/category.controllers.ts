@@ -5,7 +5,7 @@ import {
   CategoryCreate,
   CategoryRead,
   CategoryReturn,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
 } from '../interfaces';
 
 const createCategory = async (
@@ -35,9 +35,8 @@ const getCategoryById = async (
 ): Promise<Response> => {
   const categoryId = Number(req.params.id);
 
-  const realEstates: RealEstateReturnFilter = await categoryServices.getCategorybyId(
-    categoryId
-  );
+  const realEstates: RealEstateReturnFilterCategory =
+    await categoryServices.getCategorybyId(categoryId);
 
   return res.status(200).json(realEstates);
 };

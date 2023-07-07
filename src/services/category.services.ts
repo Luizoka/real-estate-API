@@ -5,13 +5,13 @@ import {
   CategoryRead,
   CategoryReturn,
   RealEstateOnly,
-  RealEstateReturnFilter,
+  RealEstateReturnFilterCategory,
 } from '../interfaces';
 import { categoryRepository, realEstateRepository } from '../repositories';
 import {
   categoryReadSchema,
   categorySchema,
-  realEstateReturnFilterSchema,
+  realEstateReturnFilterCategorySchema,
   realEstateSchema,
 } from '../schemas';
 
@@ -26,7 +26,9 @@ const getAllCategories = async (): Promise<CategoryRead> => {
   return categoryReadSchema.parse(await categoryRepository.find());
 };
 
-const getCategorybyId = async (categoryId: number): Promise<RealEstateReturnFilter> => {
+const getCategorybyId = async (
+  categoryId: number
+): Promise<RealEstateReturnFilterCategory> => {
   const foundCategory: CategoryReturn = (await categoryRepository.findOneBy({
     id: categoryId,
   }))!;
@@ -37,20 +39,13 @@ const getCategorybyId = async (categoryId: number): Promise<RealEstateReturnFilt
     category: foundCategory,
   });
 
-  /*   const finalResponse = response.map((obj) => {
-    return { RealEstate: obj };
-  }); */
-
   console.log('resposta', response);
 
-  /*  console.log('resposta certa', finalResponse); */
-
-  const filterFinal = realEstateReturnFilterSchema.parse({
+  const filterFinal = realEstateReturnFilterCategorySchema.parse({
     id: foundCategory.id,
     name: foundCategory.name,
     realEstate: response,
   });
-
   return filterFinal;
 };
 export default { createCategory, getAllCategories, getCategorybyId };

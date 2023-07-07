@@ -41,7 +41,7 @@ export class User {
   deletedAt: string | null;
 
   @OneToMany(() => Schedule, (s) => s.user)
-  schedules: Schedule;
+  schedule: Schedule;
 
   //! SCHEDULE
   /*  @ManyToMany(() => Schedule)

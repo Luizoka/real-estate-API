@@ -7,14 +7,6 @@ const createRealEstate = async (req: Request, res: Response): Promise<Response> 
   const { address, categoryId, ...payload } = req.body;
   res.locals = { ...res.locals, categoryId };
 
-  /*  console.log('controller bodyinteiro', req.body);
-  console.log('controller adress', address);
-  console.log('controller category', categoryId);
-  console.log('controller resto', payload); */
-
-  /*  const newCategory = await categoryServices.createCategory(req.body.categoryToCreate);
-  const categoryFoundId = newCategory.id; */
-  console.log('controller categoryID', categoryId);
   const realEstate: RealEstateReturn = await realEstateServices.createRealEstate({
     address,
     categoryId,
