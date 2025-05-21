@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import { User } from '../entities';
 import { SessionCreate, SessionReturn } from '../interfaces';
-import { sign } from 'jsonwebtoken';
+import { sign, SignOptions } from 'jsonwebtoken';
 import { userRepository } from '../repositories';
 import { AppError } from '../errors';
 
@@ -21,10 +21,18 @@ const createToken = async ({
     throw new AppError('Invalid credentials', 401);
   }
 
-  const token: string = sign({ admin: foundUserByEmail.admin }, process.env.SECRET_KEY!, {
+  const expiresIn: any = process.env.EXPIRES_IN ? process.env.EXPIRES_IN : '7d';
+
+  const options: SignOptions = {
     subject: foundUserByEmail.id.toString(),
-    expiresIn: process.env.EXPIRES_IN!,
-  });
+    expiresIn: expiresIn,
+  };
+
+  const token: string = sign(
+    { admin: foundUserByEmail.admin },
+    process.env.SECRET_KEY as string,
+    options
+  );
 
   return { token };
 };
