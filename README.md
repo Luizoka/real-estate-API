@@ -1,5 +1,57 @@
 # Real Estate API
 
+> **Atenção:**  
+> - Esta API agora utiliza **MySQL** como banco de dados padrão.  
+> - O schema e as tabelas são criados automaticamente ao subir o servidor em ambiente de desenvolvimento (via Docker ou localmente).  
+> - É necessário configurar a variável de ambiente `DATABASE_URL` no arquivo `.env` na raiz do projeto.
+> - O projeto já está pronto para rodar com Docker, incluindo MySQL e PHPMyAdmin.
+
+## Como rodar o projeto
+
+### Usando Docker (recomendado)
+
+1. **Configure o arquivo `.env`** na raiz do projeto (exemplo já incluso):
+   ```
+   DATABASE_URL=mysql://realestate:realestate@mysql:3306/realestate
+   NODE_ENV=development
+   PORT=3000
+   ```
+2. **Suba os containers:**
+   ```sh
+   docker-compose up --build
+   ```
+   Isso irá:
+   - Subir o banco MySQL (porta 3306)
+   - Subir o PHPMyAdmin (porta 8080, login: realestate / realestate)
+   - Subir a API (porta 3000)
+   - Criar as tabelas automaticamente se não existirem
+
+3. **Acesse:**
+   - API: http://localhost:3000
+   - PHPMyAdmin: http://localhost:8080
+
+### Rodando localmente (sem Docker)
+
+1. Instale o MySQL localmente e crie o banco `realestate` com usuário e senha conforme o `.env`.
+2. Instale as dependências:
+   ```sh
+   npm install
+   ```
+3. Garanta que o arquivo `.env` está configurado corretamente:
+   ```
+   DATABASE_URL=mysql://realestate:realestate@localhost:3306/realestate
+   NODE_ENV=development
+   PORT=3000
+   ```
+4. Rode o servidor:
+   ```sh
+   npm run dev
+   ```
+   As tabelas serão criadas automaticamente se não existirem.
+
+---
+# README.md antigo
+
 ## Introduction
 
 The Real Estate API project involved the development of an API for managing real estate services for Kimóveis, a real estate agency. The application allowed the registration of properties and users interested in property acquisition. It also facilitated scheduling and viewing visit times for available properties in the agency's database.

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: realestate
+      MYSQL_USER: realestate
+      MYSQL_PASSWORD: realestate
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: realestate
+      PMA_PASSWORD: realestate
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  app:
+    build: .
+    container_name: realestate-api
+    restart: always
+    environment:
+      DATABASE_URL: mysql://realestate:realestate@mysql:3306/realestate
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    volumes:
+      - .:/usr/src/app
+
+volumes:
+  mysql_data:

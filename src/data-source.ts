@@ -21,12 +21,14 @@ const settings = (): DataSourceOptions => {
 
   if (!dbUrl) throw new Error("Missing env var: 'DATABASE_URL'");
 
+  // Ajuste para MySQL
   return {
-    type: 'postgres',
+    type: 'mysql',
     url: dbUrl,
     logging: true,
     entities: [entitiesPath],
     migrations: [migrationPath],
+    synchronize: process.env.NODE_ENV !== 'production', // Cria tabelas automaticamente fora de produção
   };
 };
 
