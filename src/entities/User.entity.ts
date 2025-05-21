@@ -29,13 +29,13 @@ export class User {
   @Column({ type: 'varchar', length: 120 })
   password: string;
 
-  @CreateDateColumn({ type: 'date' })
+  @CreateDateColumn({ type: 'datetime' })
   createdAt: string;
 
-  @UpdateDateColumn({ type: 'date' })
+  @UpdateDateColumn({ type: 'datetime' })
   updatedAt: string;
 
-  @DeleteDateColumn({ type: 'date', nullable: true })
+  @DeleteDateColumn({ type: 'datetime', nullable: true })
   deletedAt: string | null;
 
   @OneToMany(() => Schedule, (s) => s.user)
